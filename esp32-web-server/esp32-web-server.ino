@@ -1,38 +1,38 @@
 #include <WiFi.h>
 #include <ESPAsyncWebServer.h>
 
-// Defina o nome e a senha do Wi-Fi
-const char* ssid = "SEU_SSID";
-const char* password = "SUA_SENHA";
+// Define Wi-Fi credentials
+const char* ssid = "YOUR_SSID";
+const char* password = "YOUR_PASSWORD";
 
-// Crie uma instância do servidor web assíncrono
+// Create an AsyncWebServer object on port 80
 AsyncWebServer server(80);
 
 void setup() {
-  // Inicialize a comunicação serial
+  // Initialize serial communication for debugging
   Serial.begin(115200);
 
-  // Conecte-se ao Wi-Fi
+  // Connect to Wi-Fi
   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED) {
     delay(1000);
-    Serial.println("Conectando ao WiFi...");
+    Serial.println("Connecting to WiFi...");
   }
 
-  // Imprima o endereço IP na serial
-  Serial.println("Conectado ao WiFi!");
-  Serial.print("Endereço IP: ");
+  // Print ESP32 IP address
+  Serial.println("Connected to WiFi!");
+  Serial.print("IP Address: ");
   Serial.println(WiFi.localIP());
 
-  // Defina uma rota para o servidor web
+  // Define a route for the root URL
   server.on("/", HTTP_GET, [](AsyncWebServerRequest *request){
-    request->send(200, "text/plain", "Olá, mundo!");
+    request->send(200, "text/plain", "Hello, World!");
   });
 
-  // Inicie o servidor
+  // Start the server
   server.begin();
 }
 
 void loop() {
-  // Nada para fazer aqui
+  // Nothing to do here
 }
