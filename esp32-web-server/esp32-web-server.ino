@@ -26,7 +26,7 @@ void setup() {
 
   // Defina uma rota para o servidor web
   server.on("/", HTTP_GET, [](AsyncWebServerRequest *request){
-    request->send(200, "text/plain", "Olá, mundo!");
+    request->send(200, "text/plain", "Hello World from ESP32!");
   });
 
   // Inicie o servidor
